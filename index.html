@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Planifica tu viaje futurista a Marte en 2084. Itinerarios basados en IA, visualización de colonias y planificación." />
+    <meta name="keywords" content="Marte, Ares Explorer, viajes a Marte, itinerarios, PWA, misión espacial" />
+    <meta property="og:title" content="Ares Explorer: Mars 2084" />
+    <meta property="og:description" content="Planifica tu viaje futurista a Marte en 2084 con itinerarios generados por IA y visualización de colonias." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ares Explorer: Mars 2084" />
+    <meta name="twitter:description" content="Planifica tu viaje futurista a Marte en 2084 con itinerarios generados por IA." />
+
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ares Explorer" />
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,..." />
+    <link rel="apple-touch-icon" href="data:image/svg+xml,..." />
+
+    <title>Ares Explorer: Mars 2084</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Leaflet CSS for map -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+        <!-- Leaflet CSS for map visualization -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-sA+e2YFQ3Qm9b6k5oXn6sCwq2Q3sKp3r3+g9Gk6t2H0=" crossorigin="" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Rajdhani', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'], // Corresponde a 'pantalla' en tu imagen
+                    },
+                    colors: {
+                        Mars: {
+                            100: '#fcdcc3',
+                            500: '#c1440e',
+                            900: '#4a1a05',
+                        },
+                        espace: {
+                            800: '#0b0d17',
+                            900: '#050608',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Register Service Worker for PWA support
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/service-worker.js")
+            .then((reg) => console.log("Service Worker registered:", reg))
+            .catch((err) => console.log("Service Worker registration failed:", err));
+        });
+      }
+    </script>
+</body>
+</html>

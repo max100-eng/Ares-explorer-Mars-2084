@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ares Expedition Alpha: New Cydonia Recon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <style>
+    * { font-family: 'Rajdhani', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Orbitron', sans-serif; }
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+                  url('https://images.unsplash.com/photo-1614728853975-66630c56859f?q=80&w=2070');
+      background-size: cover;
+      background-attachment: fixed;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .mars-accent { color: #e25822; }
+    .mars-btn {
+      background: #e25822;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .mars-btn:hover { background: #c1440e; }
+    .entry-card {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(11, 13, 23, 0.8);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border-left: 3px solid #e25822;
+    }
+    .entry-meta {
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+    .day-label { font-weight: 700; color: #e25822; font-size: 0.9rem; }
+    .entry-title { margin-top: 6px; color: #cfcfcf; font-weight: 600; font-size: 0.95rem; }
+    .entry-place { margin-top: 6px; color: #a9a9a9; font-size: 0.85rem; }
+    .entry-coord { margin-top: 6px; color: #99aabb; font-size: 0.8rem; }
+    .entry-status { margin-top: 6px; color: #8866ee; font-size: 0.8rem; }
+    .entry-desc { color: #ddd; font-size: 0.9rem; line-height: 1.4; }
+    #map { height: 360px; border-radius: 8px; border: 1px solid #e25822; }
+    .notices {
+      background: rgba(226, 88, 34, 0.1);
+      border-left: 3px solid #e25822;
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 18px;
+    }
+    .notices h3 { margin: 0 0 8px 0; }
+    .notices ul { margin: 0; padding-left: 20px; }
+    .notices li { margin-top: 6px; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <div>
+        <h1 style="margin: 0; font-size: 1.8rem;">Ares Expedition Alpha: New Cydonia Recon</h1>
+        <p style="margin: 6px 0 0 0; color: #c2c2c2;">3 Days • CONFIRMED: 2084</p>
+      </div>
+      <button class="mars-btn" id="exportPdf">Exportar PDF</button>
+    </header>
+
+    <section id="itinerary-list">
+      <div id="entries-container"></div>
+    </section>
+
+    <aside class="notices">
+      <h3>Mission Critical Notices</h3>
+      <ul>
+        <li>Always monitor suit pressure and oxygen reserves; Mars' atmosphere is lethal.</li>
+        <li>Beware of sudden dust devils and larger Martian dust storms; seek immediate shelter in designated bunkers.</li>
+        <li>Never venture beyond marked expedition routes without explicit permission and a fully charged comm-unit.</li>
+        <li>Martian gravity is significantly lower; maintain situational awareness to prevent falls and equipment damage.</li>
+        <li>Report any anomalies or structural damage to your habitat or rover immediately.</li>
+      </ul>
+    </aside>
+
+    <section style="margin-top: 20px;">
+      <h3>Map (approximate coordinates)</h3>
+      <div id="map"></div>
+    </section>
+  </div>
+
+  <script>
+    const itineraryData = [
+      {
+        day: "DAY 1",
+        title: "Arrival & Habitat Integration",
+        place: "New Cydonia Spaceport / Habitat-7",
+        coord: [10, 15],
+        status: "SCHEDULED",
+        desc: "Landing at New Cydonia Spaceport. Transfer to Habitat-7. Orientation and comprehensive briefing on Martian protocols, life support systems, and emergency procedures. Initial health and psychological evaluations."
+      },
+      {
+        day: "DAY 1",
+        title: "Acidalia Plains Rover Excursion",
+        place: "Acidalia Planitia Outskirts",
+        coord: [25, 30],
+        status: "SCHEDULED",
+        desc: "First surface excursion: guided pressurized rover tour of the immediate Acidalia Planitia region. Familiarization with Martian terrain, atmospheric conditions, and initial collection of environmental samples from designated safe zones."
+      },
+      {
+        day: "DAY 2",
+        title: "Ancient Cydonia Ruins Exploration",
+        place: "Cydonia Mensae Sector Gamma",
+        coord: [50, 60],
+        status: "SCHEDULED",
+        desc: "Full-day archaeological expedition to the Cydonia Mensae formations, famed for their 'Face on Mars' and other suspected ancient ruins. Detailed ground-penetrating radar scans and visual cataloging of surface anomalies."
+      },
+      {
+        day: "DAY 2",
+        title: "Geological Survey & Sample Collection",
+        place: "Kasei Valles Proximal Site",
+        coord: [70, 45],
+        status: "SCHEDULED",
+        desc: "Afternoon survey of nearby ancient riverbeds and geological formations believed to be part of the Kasei Valles system. Collection of rock and soil samples for exobiological analysis."
+      },
+      {
+        day: "DAY 3",
+        title: "Olympus Mons Observation",
+        place: "Olympus Vista Point, Tharsis Rise Sector",
+        coord: [85, 20],
+        status: "SCHEDULED",
+        desc: "Long-range telephoto imaging and spectroscopic analysis of the distant Olympus Mons from a designated observation point within the Tharsis Rise sector."
+      },
+      {
+        day: "DAY 3",
+        title: "Departure Preparation & Souvenirs",
+        place: "Habitat-7 Commissary / Spaceport",
+        coord: [15, 10],
+        status: "SCHEDULED",
+        desc: "Final briefing for the return journey to Earth. Opportunity to visit the Habitat-7 commissary for approved Martian geological souvenirs and expedition merchandise."
+      }
+    ];
+
+    // Render itinerary entries
+    const container = document.getElementById('entries-container');
+    itineraryData.forEach(item => {
+      const html = `
+        <div class="entry-card">
+          <div class="entry-meta">
+            <div class="day-label">${item.day}</div>
+            <div class="entry-title">${item.title}</div>
+            <div class="entry-place">${item.place}</div>
+            <div class="entry-coord">COORD: [${item.coord[0]}, ${item.coord[1]}]</div>
+            <div class="entry-status">STATUS: ${item.status}</div>
+          </div>
+          <div>
+            <p class="entry-desc">${item.desc}</p>
+          </div>
+        </div>
+      `;
+      container.innerHTML += html;
+    });
+
+    // Initialize Leaflet map
+    const map = L.map('map').setView([40, 0], 2);
+    L.tileLayer('https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+      attribution: '© CARTO',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Add markers
+    itineraryData.forEach(item => {
+      L.circleMarker([item.coord[0], item.coord[1]], {
+        radius: 6,
+        fillColor: '#e25822',
+        color: '#ffffff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.9
+      })
+      .addTo(map)
+      .bindPopup(`<strong style="color:#e25822;">${item.title}</strong><br/><em>${item.place}</em>`);
+    });
+
+    // Fit bounds to all markers
+    const coords = itineraryData.map(d => [d.coord[0], d.coord[1]]);
+    if (coords.length) {
+      map.fitBounds(coords, { padding: [40, 40] });
+    }
+
+    // Export PDF
+    document.getElementById('exportPdf').addEventListener('click', async () => {
+      alert('Para exportar a PDF desde el móvil:\n1. Abre el menú del navegador\n2. Selecciona "Descargar página" o "Imprimir como PDF"\n3. Guarda en tu dispositivo');
+    });
+  </script>
+</body>
+</html>

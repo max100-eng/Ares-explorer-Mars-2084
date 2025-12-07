@@ -1,0 +1,80 @@
+// src/constants/itineraries.ts
+export type ItineraryEntry = {
+  dayLabel: string;
+  title: string;
+  description: string;
+  status: string;
+  coord: [number, number];
+  location: string;
+};
+
+export const aresExpeditionAlpha = {
+  title: 'Ares Expedition Alpha: New Cydonia Recon',
+  duration: '3 Days',
+  year: 2084,
+  entries: [
+    {
+      dayLabel: 'DAY 1',
+      title: 'Arrival & Habitat Integration',
+      description:
+        'Landing at New Cydonia Spaceport. Transfer to Habitat-7. Orientation and comprehensive briefing on Martian protocols, life support systems, and emergency procedures. Initial health and psychological evaluations.',
+      status: 'SCHEDULED',
+      coord: [10.0, 15.0],
+      location: 'New Cydonia Spaceport / Habitat-7'
+    },
+    {
+      dayLabel: 'DAY 1',
+      title: 'Acidalia Plains Rover Excursion',
+      description:
+        'First surface excursion: guided pressurized rover tour of the immediate Acidalia Planitia region. Familiarization with Martian terrain, atmospheric conditions, and initial collection of environmental samples from designated safe zones.',
+      status: 'SCHEDULED',
+      coord: [25.0, 30.0],
+      location: 'Acidalia Planitia Outskirts'
+    },
+    {
+      dayLabel: 'DAY 2',
+      title: 'Ancient Cydonia Ruins Exploration',
+      description:
+        "Full-day archaeological expedition to the Cydonia Mensae formations, famed for their 'Face on Mars' and other suspected ancient ruins. Detailed ground-penetrating radar scans and visual cataloging of surface anomalies. Strict adherence to 'no-touch' artifact protocols.",
+      status: 'SCHEDULED',
+      coord: [50.0, 60.0],
+      location: 'Cydonia Mensae Sector Gamma'
+    },
+    {
+      dayLabel: 'DAY 2',
+      title: 'Geological Survey & Sample Collection',
+      description:
+        'Afternoon survey of nearby ancient riverbeds and geological formations believed to be part of the Kasei Valles system. Collection of rock and soil samples for exobiological analysis. Evening data analysis and debriefing at Habitat-7.',
+      status: 'SCHEDULED',
+      coord: [70.0, 45.0],
+      location: 'Kasei Valles Proximal Site'
+    },
+    {
+      dayLabel: 'DAY 3',
+      title: 'Olympus Mons Observation',
+      description:
+        "Long-range telephoto imaging and spectroscopic analysis of the distant Olympus Mons from a designated observation point within the Tharsis Rise sector. Discussion on Martian geological history, volcanism, and future terraforming prospects.",
+      status: 'SCHEDULED',
+      coord: [85.0, 20.0],
+      location: 'Olympus Vista Point, Tharsis Rise Sector'
+    },
+    {
+      dayLabel: 'DAY 3',
+      title: 'Departure Preparation & Souvenirs',
+      description:
+        'Final briefing for the return journey to Earth. Opportunity to visit the Habitat-7 commissary for approved Martian geological souvenirs and expedition merchandise. Comprehensive medical check-up and psychological assessment prior to boarding the Red Horizon Hauler.',
+      status: 'SCHEDULED',
+      coord: [15.0, 10.0],
+      location: 'Habitat-7 Commissary / Spaceport'
+    }
+  ] as ItineraryEntry[],
+  notices: [
+    'Always monitor suit pressure and oxygen reserves; Mars\' atmosphere is lethal.',
+    'Beware of sudden dust devils and larger Martian dust storms; seek immediate shelter in designated bunkers.',
+    'Never venture beyond marked expedition routes without explicit permission and a fully charged comm-unit.',
+    'Martian gravity is significantly lower; maintain situational awareness to prevent falls and equipment damage.',
+    'Report any anomalies or structural damage to your habitat or rover immediately. Failure to do so endangers the entire mission.'
+  ] as string[]
+};
+
+export default aresExpeditionAlpha;

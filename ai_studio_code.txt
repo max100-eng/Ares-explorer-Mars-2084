@@ -1,0 +1,25 @@
+ares-explorer/
+├── components/          <-- Crea esta carpeta
+│   ├── AppIcon.tsx
+│   ├── AuthModal.tsx
+│   ├── Button.tsx
+│   ├── ItineraryDisplay.tsx
+│   ├── MarsMap.tsx
+│   ├── SpacecraftSelection.tsx
+│   ├── StarBackground.tsx
+│   └── VideoVisualizer.tsx
+├── services/            <-- Crea esta carpeta
+│   ├── authService.ts
+│   └── geminiService.ts
+├── App.tsx
+├── constants.ts
+├── index.html
+├── index.tsx
+├── manifest.json
+├── metadata.json
+├── package.json
+├── service-worker.js
+├── tsconfig.json
+├── types.ts
+├── vercel.json
+└── vite.config.ts
