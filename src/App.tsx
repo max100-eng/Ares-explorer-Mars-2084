@@ -12,14 +12,11 @@ function App() {
   const preguntarAMarte = async () => {
     if (!pregunta) return;
     setCargando(true);
-    setRespuesta("📡 Enviando señal a la base Ares...");
+    setRespuesta("📡 Conectando con el satélite orbital...");
 
     try {
-      // ✅ CONFIGURACIÓN MAESTRA: Usamos v1beta para asegurar compatibilidad
-      const model = genAI.getGenerativeModel(
-        { model: "gemini-1.5-flash" },
-        { apiVersion: "v1beta" }
-      );
+      // ✅ USAMOS EL MODELO ESTABLE DE LA V1
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
       const result = await model.generateContent(pregunta);
       const response = await result.response;
@@ -27,10 +24,10 @@ function App() {
       
       setRespuesta(text);
     } catch (error: any) {
-      console.error("Fallo en la comunicación:", error);
+      console.error("Error de enlace:", error);
       setRespuesta(
-        `❌ ERROR DE TRANSMISIÓN: ${error.message}\n\n` +
-        `🔍 Reintenta en unos segundos. Si persiste, verifica la cuota en Google Cloud.`
+        `❌ ERROR DE SISTEMA: ${error.message}\n\n` +
+        `Sugerencia: Verifica que el modelo 'gemini-pro' esté habilitado en tu consola de Google AI.`
       );
     }
     setCargando(false);
@@ -43,19 +40,19 @@ function App() {
           ARES EXPLORER
         </h1>
         <p className="text-slate-400 uppercase tracking-widest text-xs mt-2">
-          MISIÓN MARTE 2084 | ENLACE CUÁNTICO
+          ESTACIÓN BASE MARTE | PROTOCOLO GEMINI-PRO
         </p>
       </header>
 
       <main className="w-full max-w-xl bg-slate-800/50 backdrop-blur-md p-8 rounded-3xl border border-slate-700 shadow-2xl">
         <div className="mb-6">
           <label className="block text-orange-400 text-xs font-bold mb-3 uppercase tracking-widest">
-            Consulta a la Base
+            Consulta Operacional
           </label>
           <textarea
             value={pregunta}
             onChange={(e) => setPregunta(e.target.value)}
-            placeholder="Ej: ¿Cuál es el estado de los suministros en el Sector 7?"
+            placeholder="Ej: Informe de recursos del sector Alpha..."
             className="w-full p-4 bg-slate-950 rounded-xl text-white border border-slate-700 focus:border-orange-500 outline-none transition-all resize-none"
             rows={4}
           />
@@ -67,15 +64,15 @@ function App() {
           className={`w-full font-bold py-4 rounded-xl transition-all ${
             cargando 
               ? "bg-slate-700 text-slate-500 cursor-not-allowed" 
-              : "bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-900/40"
+              : "bg-orange-600 hover:bg-orange-500 text-white shadow-lg"
           }`}
         >
-          {cargando ? "Sincronizando..." : "ENVIAR TRANSMISIÓN 🚀"}
+          {cargando ? "RECIBIENDO DATOS..." : "SOLICITAR INFORME 🚀"}
         </button>
 
         {respuesta && (
-          <section className="mt-8 bg-slate-950/80 p-6 rounded-2xl border-l-4 border-orange-500">
-            <h3 className="text-[10px] font-bold text-orange-500 uppercase mb-2 tracking-widest">Respuesta Recibida:</h3>
+          <section className="mt-8 bg-black/40 p-6 rounded-2xl border-l-4 border-orange-500 animate-in fade-in slide-in-from-top-2">
+            <h3 className="text-[10px] font-bold text-orange-500 uppercase mb-2 tracking-widest">Respuesta de la IA:</h3>
             <p className="whitespace-pre-wrap leading-relaxed text-slate-300 font-mono text-sm">
               {respuesta}
             </p>
@@ -84,7 +81,7 @@ function App() {
       </main>
 
       <footer className="mt-10 text-slate-600 text-[10px] tracking-widest uppercase">
-        Terminal Status: Online | Protocol: v1beta-flash
+        Enlace Estable: v1-PRO | Latencia: 3.2s (Simulada)
       </footer>
     </div>
   );
