@@ -6,8 +6,7 @@ function App() {
   const [respuesta, setRespuesta] = useState("");
   const [cargando, setCargando] = useState(false);
 
-
-
+  // Inicializamos la API con la Key de Vercel
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
 
   const preguntarAMarte = async () => {
@@ -16,7 +15,10 @@ function App() {
     setRespuesta("📡 Enviando señal a la base...");
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      // ✅ CORRECCIÓN: Definimos la constante 'model' antes de usarla
+      const modelName = import.meta.env.VITE_GEMINI_MODEL || "gemini-1.5-flash";
+      const model = genAI.getGenerativeModel({ model: modelName });
+
       const result = await model.generateContent(pregunta);
       const response = await result.response;
       const text = response.text();
