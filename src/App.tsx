@@ -17,7 +17,7 @@ function App() {
     try {
       // ✅ CORRECCIÓN: Definimos la constante 'model' antes de usarla
       const modelName = import.meta.env.VITE_GEMINI_MODEL || "gemini-1.5-flash";
-      const model = genAI.getGenerativeModel({ model: modelName });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
       const result = await model.generateContent(pregunta);
       const response = await result.response;
