@@ -6,8 +6,8 @@ function App() {
   const [respuesta, setRespuesta] = useState("");
   const [cargando, setCargando] = useState(false);
 
-  // AQUÍ ES DONDE SE USA TU LLAVE SECRETA
-  // Si esto falla, es que la llave no se guardó bien en .env.local
+
+
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_API_KEY);
 
   const preguntarAMarte = async () => {
@@ -16,14 +16,15 @@ function App() {
     setRespuesta("📡 Enviando señal a la base...");
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-pro"});
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
       const result = await model.generateContent(pregunta);
       const response = await result.response;
       const text = response.text();
       setRespuesta(text);
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      setRespuesta("❌ ERROR DE CONEXIÓN: No se detecta la llave. Revisa tu archivo .env.local");
+      const isKeyPresent = !!import.meta.env.VITE_GOOGLE_API_KEY;
+      setRespuesta(`❌ ERROR: ${error.message}\n\n🔑 Key detected: ${isKeyPresent ? "YES" : "NO"}`);
     }
     setCargando(false);
   };
@@ -40,8 +41,8 @@ function App() {
           className="w-full p-3 bg-slate-900 rounded text-white mb-4 border border-slate-600 outline-none"
           rows={3}
         />
-        
-        <button 
+
+        <button
           onClick={preguntarAMarte}
           disabled={cargando}
           className="w-full bg-orange-600 hover:bg-orange-500 font-bold py-3 rounded transition-all"

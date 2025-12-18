@@ -1,0 +1,21 @@
+runtime: nodejs20 # O la versión que uses
+service: default
+instance_class: F2
+
+
+env_variables:
+  # Esta línea debe tener exactamente DOS espacios de indentación
+  VITE_GOOGLE_API_KEY: "AIzaSyA5VqZ7rp-4IqDMplVsOia6OK8Hs1VvSc4" 
+
+
+handlers:
+- url: /assets
+  static_dir: dist/assets
+
+- url: /(.*\.(html|css|js|json|png|jpg|ico|svg))$
+  static_files: dist/\1
+  upload: dist/(.*\.(html|css|js|json|png|jpg|ico|svg))$
+
+- url: /.*
+  static_files: dist/index.html
+  upload: dist/index.html

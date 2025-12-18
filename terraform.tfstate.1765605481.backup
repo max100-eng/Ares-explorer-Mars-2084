@@ -1,0 +1,2413 @@
+{
+  "version": 4,
+  "terraform_version": "1.14.2",
+  "serial": 216,
+  "lineage": "31317ea2-54b8-a6d8-fc71-697fd54d4f06",
+  "outputs": {
+    "app1-backend-service_service_uri": {
+      "value": "https://backend-service-el43zx5hmq-uc.a.run.app",
+      "type": "string"
+    },
+    "app1-frontend-service_service_uri": {
+      "value": "https://frontend-service-el43zx5hmq-uc.a.run.app",
+      "type": "string"
+    },
+    "app1-global-lb-frontend_external_ip": {
+      "value": "35.241.10.95",
+      "type": "string"
+    },
+    "app1-global-lb-frontend_ip_address_internal_managed_http": {
+      "value": [],
+      "type": [
+        "tuple",
+        []
+      ]
+    },
+    "app1-global-lb-frontend_ip_address_internal_managed_https": {
+      "value": [],
+      "type": [
+        "tuple",
+        []
+      ]
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_project_service",
+      "name": "apphub_api_service",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "utilitarian-chemist-kvbmb/apphub.googleapis.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "service": "apphub.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0=",
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_service",
+      "name": "cloudresourcemanager_api_service",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "utilitarian-chemist-kvbmb/cloudresourcemanager.googleapis.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "service": "cloudresourcemanager.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_service",
+      "name": "secretmanager_api_service",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "utilitarian-chemist-kvbmb/secretmanager.googleapis.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "service": "secretmanager.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0=",
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_service",
+      "name": "sqladmin_api_service",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "utilitarian-chemist-kvbmb/sqladmin.googleapis.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "service": "sqladmin.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0=",
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "time_sleep",
+      "name": "wait_for_service_discovery",
+      "provider": "provider[\"registry.terraform.io/hashicorp/time\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "create_duration": "300s",
+            "destroy_duration": null,
+            "id": "2025-12-12T22:51:30Z",
+            "triggers": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.data.google_compute_default_service_account.default",
+            "module.app1-backend-service.google_cloud_run_v2_service.main",
+            "module.app1-backend-service.google_cloud_run_v2_service_iam_member.authorize",
+            "module.app1-backend-service.google_cloud_run_v2_service_iam_member.authorize_iap_p4sa",
+            "module.app1-backend-service.google_iap_web_cloud_run_service_iam_member.iap_access",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_project_service_identity.iap_p4sa",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_compute_zones.available",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_project_iam_member.database_integration",
+            "module.app1-database-postgresql.google_sql_database.additional_databases",
+            "module.app1-database-postgresql.google_sql_database.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.google_sql_database_instance.replicas",
+            "module.app1-database-postgresql.google_sql_user.additional_users",
+            "module.app1-database-postgresql.google_sql_user.default",
+            "module.app1-database-postgresql.google_sql_user.iam_account",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.additional_passwords",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version",
+            "module.app1-frontend-service.data.google_compute_default_service_account.default",
+            "module.app1-frontend-service.google_cloud_run_v2_service.main",
+            "module.app1-frontend-service.google_cloud_run_v2_service_iam_member.authorize",
+            "module.app1-frontend-service.google_cloud_run_v2_service_iam_member.authorize_iap_p4sa",
+            "module.app1-frontend-service.google_iap_web_cloud_run_service_iam_member.iap_access",
+            "module.app1-frontend-service.google_project_iam_member.roles",
+            "module.app1-frontend-service.google_project_service_identity.iap_p4sa",
+            "module.app1-frontend-service.google_service_account.sa"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "data",
+      "type": "google_compute_default_service_account",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "annotations": {},
+            "binary_authorization": [],
+            "build_config": [],
+            "client": "",
+            "client_version": "",
+            "conditions": [
+              {
+                "execution_reason": "",
+                "last_transition_time": "2025-12-12T20:53:57.225798Z",
+                "message": "",
+                "reason": "",
+                "revision_reason": "",
+                "severity": "",
+                "state": "CONDITION_SUCCEEDED",
+                "type": "RoutesReady"
+              },
+              {
+                "execution_reason": "",
+                "last_transition_time": "2025-12-12T20:53:51.498672Z",
+                "message": "",
+                "reason": "",
+                "revision_reason": "",
+                "severity": "",
+                "state": "CONDITION_SUCCEEDED",
+                "type": "ConfigurationsReady"
+              }
+            ],
+            "create_time": "2025-12-12T20:53:48.256083Z",
+            "creator": "maxbarbetta100@gmail.com",
+            "custom_audiences": [],
+            "default_uri_disabled": false,
+            "delete_time": "",
+            "deletion_protection": false,
+            "description": "",
+            "effective_annotations": {},
+            "effective_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "etag": "\"CNyB8skGELiIjno/cHJvamVjdHMvdXRpbGl0YXJpYW4tY2hlbWlzdC1rdmJtYi9sb2NhdGlvbnMvdXMtY2VudHJhbDEvc2VydmljZXMvYmFja2VuZC1zZXJ2aWNl\"",
+            "expire_time": "",
+            "generation": "1",
+            "iap_enabled": false,
+            "id": "projects/utilitarian-chemist-kvbmb/locations/us-central1/services/backend-service",
+            "ingress": "INGRESS_TRAFFIC_ALL",
+            "invoker_iam_disabled": false,
+            "labels": {},
+            "last_modifier": "maxbarbetta100@gmail.com",
+            "latest_created_revision": "projects/utilitarian-chemist-kvbmb/locations/us-central1/services/backend-service/revisions/backend-service-00001-cbd",
+            "latest_ready_revision": "projects/utilitarian-chemist-kvbmb/locations/us-central1/services/backend-service/revisions/backend-service-00001-cbd",
+            "launch_stage": "GA",
+            "location": "us-central1",
+            "name": "backend-service",
+            "observed_generation": "1",
+            "project": "utilitarian-chemist-kvbmb",
+            "reconciling": false,
+            "scaling": [],
+            "template": [
+              {
+                "annotations": {},
+                "containers": [
+                  {
+                    "args": [],
+                    "base_image_uri": "",
+                    "build_info": [],
+                    "command": [],
+                    "depends_on": [],
+                    "env": [
+                      {
+                        "name": "app1_database_postgresql_CLOUD_SQL_DATABASE_CONNECTION_NAME",
+                        "value": "utilitarian-chemist-kvbmb:us-central1:postgresql-db",
+                        "value_source": []
+                      },
+                      {
+                        "name": "app1_database_postgresql_CLOUD_SQL_DATABASE_HOST",
+                        "value": "34.172.201.239",
+                        "value_source": []
+                      },
+                      {
+                        "name": "app1_database_postgresql_CLOUD_SQL_DATABASE_NAME",
+                        "value": "default",
+                        "value_source": []
+                      },
+                      {
+                        "name": "app1_database_secret_SECRET",
+                        "value": "",
+                        "value_source": [
+                          {
+                            "secret_key_ref": [
+                              {
+                                "secret": "db-credentials-secret",
+                                "version": "1"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "image": "us-docker.pkg.dev/cloudrun/container/hello",
+                    "liveness_probe": [],
+                    "name": "service-container",
+                    "ports": [
+                      {
+                        "container_port": 8080,
+                        "name": "http1"
+                      }
+                    ],
+                    "resources": [
+                      {
+                        "cpu_idle": true,
+                        "limits": {
+                          "cpu": "1000m",
+                          "memory": "512Mi"
+                        },
+                        "startup_cpu_boost": false
+                      }
+                    ],
+                    "startup_probe": [
+                      {
+                        "failure_threshold": 1,
+                        "grpc": [],
+                        "http_get": [],
+                        "initial_delay_seconds": 0,
+                        "period_seconds": 240,
+                        "tcp_socket": [
+                          {
+                            "port": 8080
+                          }
+                        ],
+                        "timeout_seconds": 240
+                      }
+                    ],
+                    "volume_mounts": [],
+                    "working_dir": ""
+                  },
+                  {
+                    "args": [],
+                    "base_image_uri": "",
+                    "build_info": [],
+                    "command": [],
+                    "depends_on": [
+                      "service-container"
+                    ],
+                    "env": [],
+                    "image": "us-docker.pkg.dev/cloud-ops-agents-artifacts/cloud-run-gmp-sidecar/cloud-run-gmp-sidecar:1.1.1",
+                    "liveness_probe": [],
+                    "name": "collector",
+                    "ports": [],
+                    "resources": [
+                      {
+                        "cpu_idle": true,
+                        "limits": {
+                          "cpu": "1000m",
+                          "memory": "256Mi"
+                        },
+                        "startup_cpu_boost": false
+                      }
+                    ],
+                    "startup_probe": [],
+                    "volume_mounts": [],
+                    "working_dir": ""
+                  }
+                ],
+                "encryption_key": "",
+                "execution_environment": "EXECUTION_ENVIRONMENT_GEN2",
+                "gpu_zonal_redundancy_disabled": false,
+                "labels": {},
+                "max_instance_request_concurrency": 80,
+                "node_selector": [],
+                "revision": "",
+                "scaling": [
+                  {
+                    "max_instance_count": 3,
+                    "min_instance_count": 0
+                  }
+                ],
+                "service_account": "backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+                "service_mesh": [],
+                "session_affinity": false,
+                "timeout": "300s",
+                "volumes": [],
+                "vpc_access": [
+                  {
+                    "connector": "",
+                    "egress": "ALL_TRAFFIC",
+                    "network_interfaces": [
+                      {
+                        "network": "default",
+                        "subnetwork": "default",
+                        "tags": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "terminal_condition": [
+              {
+                "execution_reason": "",
+                "last_transition_time": "2025-12-12T20:53:57.272754Z",
+                "message": "",
+                "reason": "",
+                "revision_reason": "",
+                "severity": "",
+                "state": "CONDITION_SUCCEEDED",
+                "type": "Ready"
+              }
+            ],
+            "terraform_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "timeouts": null,
+            "traffic": [
+              {
+                "percent": 100,
+                "revision": "",
+                "tag": "",
+                "type": "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+              }
+            ],
+            "traffic_statuses": [
+              {
+                "percent": 100,
+                "revision": "",
+                "tag": "",
+                "type": "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST",
+                "uri": ""
+              }
+            ],
+            "uid": "f33430fe-3b0c-448a-a54b-19c4a96a4144",
+            "update_time": "2025-12-12T20:53:48.256083Z",
+            "uri": "https://backend-service-el43zx5hmq-uc.a.run.app",
+            "urls": [
+              "https://backend-service-1012287469672.us-central1.run.app",
+              "https://backend-service-el43zx5hmq-uc.a.run.app"
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service_iam_member",
+      "name": "authorize",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service_iam_member",
+      "name": "authorize_iap_p4sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "managed",
+      "type": "google_iap_web_cloud_run_service_iam_member",
+      "name": "iap_access",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "managed",
+      "type": "google_project_iam_member",
+      "name": "roles",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "roles/cloudsql.client",
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZFxifdJ4Q=",
+            "id": "utilitarian-chemist-kvbmb/roles/cloudsql.client/serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "role": "roles/cloudsql.client"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "module.app1-backend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": "roles/cloudsql.instanceUser",
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZFxifdJ4Q=",
+            "id": "utilitarian-chemist-kvbmb/roles/cloudsql.instanceUser/serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "role": "roles/cloudsql.instanceUser"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "module.app1-backend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": "roles/monitoring.metricWriter",
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZFxifdJ4Q=",
+            "id": "utilitarian-chemist-kvbmb/roles/monitoring.metricWriter/serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "role": "roles/monitoring.metricWriter"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "module.app1-backend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": "roles/secretmanager.secretAccessor",
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZFxifdJ4Q=",
+            "id": "utilitarian-chemist-kvbmb/roles/secretmanager.secretAccessor/serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "role": "roles/secretmanager.secretAccessor"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "module.app1-backend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "managed",
+      "type": "google_project_service_identity",
+      "name": "iap_p4sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-backend-service",
+      "mode": "managed",
+      "type": "google_service_account",
+      "name": "sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "backend-service-us-central1-sa",
+            "create_ignore_already_exists": null,
+            "description": "",
+            "disabled": false,
+            "display_name": "Service account for backend-service in us-central1",
+            "email": "backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "id": "projects/utilitarian-chemist-kvbmb/serviceAccounts/backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "name": "projects/utilitarian-chemist-kvbmb/serviceAccounts/backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "timeouts": null,
+            "unique_id": "112500593389504924063"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "google_project_service.apphub_api_service"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "data",
+      "type": "google_compute_zones",
+      "name": "available",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/utilitarian-chemist-kvbmb/regions/us-central1",
+            "names": [
+              "us-central1-a",
+              "us-central1-b",
+              "us-central1-c",
+              "us-central1-f"
+            ],
+            "project": "utilitarian-chemist-kvbmb",
+            "region": "us-central1",
+            "status": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "data",
+      "type": "google_kms_key_handle",
+      "name": "key_handle",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_kms_key_handle",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_project_iam_member",
+      "name": "database_integration",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_sql_database",
+      "name": "additional_databases",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_sql_database",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "charset": "UTF8",
+            "collation": "en_US.UTF8",
+            "deletion_policy": "DELETE",
+            "id": "projects/utilitarian-chemist-kvbmb/instances/postgresql-db/databases/default",
+            "instance": "postgresql-db",
+            "name": "default",
+            "project": "utilitarian-chemist-kvbmb",
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/utilitarian-chemist-kvbmb/instances/postgresql-db/databases/default",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_sql_database_instance",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "available_maintenance_versions": [],
+            "clone": [],
+            "connection_name": "utilitarian-chemist-kvbmb:us-central1:postgresql-db",
+            "database_version": "POSTGRES_15",
+            "deletion_protection": false,
+            "dns_name": "",
+            "dns_names": [],
+            "encryption_key_name": null,
+            "first_ip_address": "34.172.201.239",
+            "id": "postgresql-db",
+            "instance_type": "CLOUD_SQL_INSTANCE",
+            "ip_address": [
+              {
+                "ip_address": "34.172.201.239",
+                "time_to_retire": "",
+                "type": "PRIMARY"
+              }
+            ],
+            "maintenance_version": "POSTGRES_15_15.R20251004.01_19",
+            "master_instance_name": "",
+            "name": "postgresql-db",
+            "node_count": 0,
+            "private_ip_address": "",
+            "project": "utilitarian-chemist-kvbmb",
+            "psc_service_attachment_link": "",
+            "public_ip_address": "34.172.201.239",
+            "region": "us-central1",
+            "replica_configuration": [],
+            "replica_names": [],
+            "replication_cluster": [
+              {
+                "dr_replica": false,
+                "failover_dr_replica_name": "",
+                "psa_write_endpoint": ""
+              }
+            ],
+            "restore_backup_context": [],
+            "root_password": null,
+            "self_link": "https://sqladmin.googleapis.com/sql/v1beta4/projects/utilitarian-chemist-kvbmb/instances/postgresql-db",
+            "server_ca_cert": [
+              {
+                "cert": "-----BEGIN CERTIFICATE-----\nMIIDfzCCAmegAwIBAgIBADANBgkqhkiG9w0BAQsFADB3MS0wKwYDVQQuEyQ2ZGIy\nMDA3Ny1iNDY2LTQxNTMtYmQ0Yy0xYzg5YmJmZWU5YmYxIzAhBgNVBAMTGkdvb2ds\nZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUsIEluYzELMAkG\nA1UEBhMCVVMwHhcNMjUxMjEyMjA1MDQxWhcNMzUxMjEwMjA1MTQxWjB3MS0wKwYD\nVQQuEyQ2ZGIyMDA3Ny1iNDY2LTQxNTMtYmQ0Yy0xYzg5YmJmZWU5YmYxIzAhBgNV\nBAMTGkdvb2dsZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUs\nIEluYzELMAkGA1UEBhMCVVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\nAQCYlPxj9YbYAjXpGk/vbeQ/dv2CzALIeijAkWUPCFKuxQ8cjCcGFWL6yHuYDieZ\n3mryFSE6m3bYF2wnPnoN0Ue/E9c44M5IYehcv0I1ji3jVakp78ZaX07zdQHW7kKV\nvtDv5nJSgcvrEa0dGxgUmnUWLC0qZEo1G0mVPv6TUao2NVWuo3lxUtRXjhLSHs2+\ne+3h0ihV5bDhqGRHLI+Ux/8RY9OdwlXchZDSi9wcD694SHtfINyQYIQQY1M9Ebc3\na70vzounGVZ8wbwhuuNfzt5fijmeplzTpzvtuWpVcC57qHCp/mc0KxIB7DljXfP9\nnH7p4YkQss8CvTmSGxxcsyt9AgMBAAGjFjAUMBIGA1UdEwEB/wQIMAYBAf8CAQAw\nDQYJKoZIhvcNAQELBQADggEBAGBQgcLTQfioGc+Iy0tNnpiY1HW2g/3hbOAUsCNW\nPvlSpmWMpo2SxXf/OYbtbghgV3Q62UIUGohf5AB/hgZa9WrkH6RnuBrDBQRlzRpu\nRIsiJHIQv+4+JQ47v4Ea6ij0vkAUkSF4AKcNk5LYX8cr84UBByTlOU/0d6OCkKpM\ncnXenb25U2zA14SS9oLqB1dqDV+2+IXtSKfaKbRGIdWbI3k/BaAPthuUi8ftwsA6\nLRC8TXrenNhdMWKuWX98eaDfpfVcygLuZly1f6EYOBlO2YnbycfHZ1ofBeeHIq6b\nd6kbvTDbimXoJ81E5EL46kLLtG0zIahyqAynYBZAxpKXyOs=\n-----END CERTIFICATE-----",
+                "common_name": "C=US,O=Google\\, Inc,CN=Google Cloud SQL Server CA,dnQualifier=6db20077-b466-4153-bd4c-1c89bbfee9bf",
+                "create_time": "2025-12-12T20:50:41.725Z",
+                "expiration_time": "2035-12-10T20:51:41.725Z",
+                "sha1_fingerprint": "1b7dd45443555f1f646fd47325d42c6019a112d4"
+              }
+            ],
+            "service_account_email_address": "p1012287469672-o2b7z4@gcp-sa-cloud-sql.iam.gserviceaccount.com",
+            "settings": [
+              {
+                "activation_policy": "ALWAYS",
+                "active_directory_config": [],
+                "advanced_machine_features": [],
+                "availability_type": "REGIONAL",
+                "backup_configuration": [
+                  {
+                    "backup_retention_settings": [
+                      {
+                        "retained_backups": 15,
+                        "retention_unit": "COUNT"
+                      }
+                    ],
+                    "binary_log_enabled": false,
+                    "enabled": true,
+                    "location": "",
+                    "point_in_time_recovery_enabled": true,
+                    "start_time": "11:00",
+                    "transaction_log_retention_days": 14
+                  }
+                ],
+                "collation": "",
+                "connection_pool_config": [],
+                "connector_enforcement": "NOT_REQUIRED",
+                "data_cache_config": [
+                  {
+                    "data_cache_enabled": true
+                  }
+                ],
+                "data_disk_provisioned_iops": 0,
+                "data_disk_provisioned_throughput": 0,
+                "database_flags": [
+                  {
+                    "name": "cloudsql.iam_authentication",
+                    "value": "on"
+                  }
+                ],
+                "deletion_protection_enabled": false,
+                "deny_maintenance_period": [],
+                "disk_autoresize": true,
+                "disk_autoresize_limit": 0,
+                "disk_size": 10,
+                "disk_type": "PD_SSD",
+                "edition": "ENTERPRISE_PLUS",
+                "effective_availability_type": "REGIONAL",
+                "enable_dataplex_integration": false,
+                "enable_google_ml_integration": false,
+                "insights_config": [],
+                "ip_configuration": [
+                  {
+                    "allocated_ip_range": "",
+                    "authorized_networks": [],
+                    "custom_subject_alternative_names": [],
+                    "enable_private_path_for_google_cloud_services": false,
+                    "ipv4_enabled": true,
+                    "private_network": "",
+                    "psc_config": [],
+                    "server_ca_mode": "GOOGLE_MANAGED_INTERNAL_CA",
+                    "server_ca_pool": "",
+                    "ssl_mode": "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
+                  }
+                ],
+                "location_preference": [
+                  {
+                    "follow_gae_application": "",
+                    "secondary_zone": "",
+                    "zone": "us-central1-a"
+                  }
+                ],
+                "maintenance_window": [
+                  {
+                    "day": 1,
+                    "hour": 23,
+                    "update_track": "canary"
+                  }
+                ],
+                "password_validation_policy": [],
+                "pricing_plan": "PER_USE",
+                "retain_backups_on_delete": false,
+                "sql_server_audit_config": [],
+                "tier": "db-perf-optimized-N-8",
+                "time_zone": "",
+                "user_labels": {},
+                "version": 5
+              }
+            ],
+            "timeouts": {
+              "create": "30m",
+              "delete": "30m",
+              "update": "30m"
+            }
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "root_password"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "server_ca_cert"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInVwZGF0ZSI6MTgwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_sql_database_instance",
+      "name": "replicas",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_sql_user",
+      "name": "additional_users",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_sql_user",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "deletion_policy": null,
+            "host": "",
+            "id": "default//postgresql-db",
+            "instance": "postgresql-db",
+            "name": "default",
+            "password": "ahTlDsInIZVcAfF1EfDi9xJLLrXxUxAd",
+            "password_policy": [],
+            "password_wo": null,
+            "password_wo_version": null,
+            "project": "utilitarian-chemist-kvbmb",
+            "sql_server_user_details": [],
+            "timeouts": null,
+            "type": ""
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-database-postgresql.data.google_compute_zones.available",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.google_sql_database_instance.replicas",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "google_sql_user",
+      "name": "iam_account",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "backend-service-us-central1-sa",
+          "schema_version": 1,
+          "attributes": {
+            "deletion_policy": null,
+            "host": "",
+            "id": "backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam//postgresql-db",
+            "instance": "postgresql-db",
+            "name": "backend-service-us-central1-sa@utilitarian-chemist-kvbmb.iam",
+            "password": null,
+            "password_policy": [],
+            "password_wo": null,
+            "password_wo_version": null,
+            "project": "utilitarian-chemist-kvbmb",
+            "sql_server_user_details": [],
+            "timeouts": null,
+            "type": "CLOUD_IAM_SERVICE_ACCOUNT"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.data.google_compute_default_service_account.default",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "null_resource",
+      "name": "module_depends_on",
+      "provider": "provider[\"registry.terraform.io/hashicorp/null\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "2988174173921403537",
+            "triggers": {
+              "value": "0"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.sqladmin_api_service"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "random_id",
+      "name": "suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "random_password",
+      "name": "additional_passwords",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-database-postgresql",
+      "mode": "managed",
+      "type": "random_password",
+      "name": "user-password",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 3,
+          "attributes": {
+            "bcrypt_hash": "$2a$10$BCHyndM9hBhwjT/J0zrSOOVC/IDOl/HIf2ncF2BmndCaFHbO/kcIG",
+            "id": "none",
+            "keepers": {
+              "name": "postgresql-db"
+            },
+            "length": 32,
+            "lower": true,
+            "min_lower": 1,
+            "min_numeric": 1,
+            "min_special": 0,
+            "min_upper": 1,
+            "number": true,
+            "numeric": true,
+            "override_special": null,
+            "result": "ahTlDsInIZVcAfF1EfDi9xJLLrXxUxAd",
+            "special": false,
+            "upper": true
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "bcrypt_hash"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "result"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-secret",
+      "mode": "managed",
+      "type": "google_secret_manager_secret",
+      "name": "secret",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "annotations": {},
+            "create_time": "2025-12-12T20:49:04.859779Z",
+            "deletion_protection": false,
+            "effective_annotations": {},
+            "effective_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "expire_time": "",
+            "id": "projects/utilitarian-chemist-kvbmb/secrets/db-credentials-secret",
+            "labels": {},
+            "name": "projects/1012287469672/secrets/db-credentials-secret",
+            "project": "utilitarian-chemist-kvbmb",
+            "replication": [
+              {
+                "auto": [
+                  {
+                    "customer_managed_encryption": []
+                  }
+                ],
+                "user_managed": []
+              }
+            ],
+            "rotation": [],
+            "secret_id": "db-credentials-secret",
+            "tags": null,
+            "terraform_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "timeouts": null,
+            "topics": [],
+            "ttl": null,
+            "version_aliases": {},
+            "version_destroy_ttl": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-database-secret",
+      "mode": "managed",
+      "type": "google_secret_manager_secret_version",
+      "name": "version",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "create_time": "2025-12-12T20:53:46.614461Z",
+            "deletion_policy": "DELETE",
+            "destroy_time": "",
+            "enabled": true,
+            "id": "projects/1012287469672/secrets/db-credentials-secret/versions/1",
+            "is_secret_data_base64": false,
+            "name": "projects/1012287469672/secrets/db-credentials-secret/versions/1",
+            "secret": "projects/utilitarian-chemist-kvbmb/secrets/db-credentials-secret",
+            "secret_data": "ahTlDsInIZVcAfF1EfDi9xJLLrXxUxAd",
+            "secret_data_wo": null,
+            "secret_data_wo_version": 0,
+            "timeouts": null,
+            "version": "1"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "secret_data"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "data",
+      "type": "google_compute_default_service_account",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "annotations": {},
+            "binary_authorization": [],
+            "build_config": [],
+            "client": "",
+            "client_version": "",
+            "conditions": [
+              {
+                "execution_reason": "",
+                "last_transition_time": "2025-12-12T20:54:08.254036Z",
+                "message": "",
+                "reason": "",
+                "revision_reason": "",
+                "severity": "",
+                "state": "CONDITION_SUCCEEDED",
+                "type": "RoutesReady"
+              },
+              {
+                "execution_reason": "",
+                "last_transition_time": "2025-12-12T20:54:07.011440Z",
+                "message": "",
+                "reason": "",
+                "revision_reason": "",
+                "severity": "",
+                "state": "CONDITION_SUCCEEDED",
+                "type": "ConfigurationsReady"
+              }
+            ],
+            "create_time": "2025-12-12T20:54:00.701028Z",
+            "creator": "maxbarbetta100@gmail.com",
+            "custom_audiences": [],
+            "default_uri_disabled": false,
+            "delete_time": "",
+            "deletion_protection": false,
+            "description": "",
+            "effective_annotations": {},
+            "effective_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "etag": "\"COiB8skGEKCto84C/cHJvamVjdHMvdXRpbGl0YXJpYW4tY2hlbWlzdC1rdmJtYi9sb2NhdGlvbnMvdXMtY2VudHJhbDEvc2VydmljZXMvZnJvbnRlbmQtc2VydmljZQ\"",
+            "expire_time": "",
+            "generation": "1",
+            "iap_enabled": false,
+            "id": "projects/utilitarian-chemist-kvbmb/locations/us-central1/services/frontend-service",
+            "ingress": "INGRESS_TRAFFIC_ALL",
+            "invoker_iam_disabled": false,
+            "labels": {},
+            "last_modifier": "maxbarbetta100@gmail.com",
+            "latest_created_revision": "projects/utilitarian-chemist-kvbmb/locations/us-central1/services/frontend-service/revisions/frontend-service-00001-d65",
+            "latest_ready_revision": "projects/utilitarian-chemist-kvbmb/locations/us-central1/services/frontend-service/revisions/frontend-service-00001-d65",
+            "launch_stage": "GA",
+            "location": "us-central1",
+            "name": "frontend-service",
+            "observed_generation": "1",
+            "project": "utilitarian-chemist-kvbmb",
+            "reconciling": false,
+            "scaling": [],
+            "template": [
+              {
+                "annotations": {},
+                "containers": [
+                  {
+                    "args": [],
+                    "base_image_uri": "",
+                    "build_info": [],
+                    "command": [],
+                    "depends_on": [],
+                    "env": [
+                      {
+                        "name": "app1_backend_service_SERVICE_ENDPOINT",
+                        "value": "https://backend-service-el43zx5hmq-uc.a.run.app",
+                        "value_source": []
+                      }
+                    ],
+                    "image": "us-docker.pkg.dev/cloudrun/container/hello",
+                    "liveness_probe": [],
+                    "name": "service-container",
+                    "ports": [
+                      {
+                        "container_port": 8080,
+                        "name": "http1"
+                      }
+                    ],
+                    "resources": [
+                      {
+                        "cpu_idle": true,
+                        "limits": {
+                          "cpu": "1000m",
+                          "memory": "512Mi"
+                        },
+                        "startup_cpu_boost": false
+                      }
+                    ],
+                    "startup_probe": [
+                      {
+                        "failure_threshold": 1,
+                        "grpc": [],
+                        "http_get": [],
+                        "initial_delay_seconds": 0,
+                        "period_seconds": 240,
+                        "tcp_socket": [
+                          {
+                            "port": 8080
+                          }
+                        ],
+                        "timeout_seconds": 240
+                      }
+                    ],
+                    "volume_mounts": [],
+                    "working_dir": ""
+                  },
+                  {
+                    "args": [],
+                    "base_image_uri": "",
+                    "build_info": [],
+                    "command": [],
+                    "depends_on": [
+                      "service-container"
+                    ],
+                    "env": [],
+                    "image": "us-docker.pkg.dev/cloud-ops-agents-artifacts/cloud-run-gmp-sidecar/cloud-run-gmp-sidecar:1.1.1",
+                    "liveness_probe": [],
+                    "name": "collector",
+                    "ports": [],
+                    "resources": [
+                      {
+                        "cpu_idle": true,
+                        "limits": {
+                          "cpu": "1000m",
+                          "memory": "256Mi"
+                        },
+                        "startup_cpu_boost": false
+                      }
+                    ],
+                    "startup_probe": [],
+                    "volume_mounts": [],
+                    "working_dir": ""
+                  }
+                ],
+                "encryption_key": "",
+                "execution_environment": "EXECUTION_ENVIRONMENT_GEN2",
+                "gpu_zonal_redundancy_disabled": false,
+                "labels": {},
+                "max_instance_request_concurrency": 80,
+                "node_selector": [],
+                "revision": "",
+                "scaling": [
+                  {
+                    "max_instance_count": 3,
+                    "min_instance_count": 0
+                  }
+                ],
+                "service_account": "frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+                "service_mesh": [],
+                "session_affinity": false,
+                "timeout": "300s",
+                "volumes": [],
+                "vpc_access": [
+                  {
+                    "connector": "",
+                    "egress": "ALL_TRAFFIC",
+                    "network_interfaces": [
+                      {
+                        "network": "default",
+                        "subnetwork": "default",
+                        "tags": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "terminal_condition": [
+              {
+                "execution_reason": "",
+                "last_transition_time": "2025-12-12T20:54:08.295989Z",
+                "message": "",
+                "reason": "",
+                "revision_reason": "",
+                "severity": "",
+                "state": "CONDITION_SUCCEEDED",
+                "type": "Ready"
+              }
+            ],
+            "terraform_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "timeouts": null,
+            "traffic": [
+              {
+                "percent": 100,
+                "revision": "",
+                "tag": "",
+                "type": "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
+              }
+            ],
+            "traffic_statuses": [
+              {
+                "percent": 100,
+                "revision": "",
+                "tag": "",
+                "type": "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST",
+                "uri": ""
+              }
+            ],
+            "uid": "57c77ffd-d5e0-4e00-abe1-c7cac0b203bb",
+            "update_time": "2025-12-12T20:54:00.701028Z",
+            "uri": "https://frontend-service-el43zx5hmq-uc.a.run.app",
+            "urls": [
+              "https://frontend-service-1012287469672.us-central1.run.app",
+              "https://frontend-service-el43zx5hmq-uc.a.run.app"
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.google_cloud_run_v2_service.main",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version",
+            "module.app1-frontend-service.google_project_iam_member.roles",
+            "module.app1-frontend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service_iam_member",
+      "name": "authorize",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service_iam_member",
+      "name": "authorize_iap_p4sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "managed",
+      "type": "google_iap_web_cloud_run_service_iam_member",
+      "name": "iap_access",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "managed",
+      "type": "google_project_iam_member",
+      "name": "roles",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "roles/monitoring.metricWriter",
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZFxifdJ4Q=",
+            "id": "utilitarian-chemist-kvbmb/roles/monitoring.metricWriter/serviceAccount:frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "role": "roles/monitoring.metricWriter"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "module.app1-frontend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        },
+        {
+          "index_key": "roles/run.invoker",
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZFxifdJ4Q=",
+            "id": "utilitarian-chemist-kvbmb/roles/run.invoker/serviceAccount:frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "role": "roles/run.invoker"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "module.app1-frontend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "managed",
+      "type": "google_project_service_identity",
+      "name": "iap_p4sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-frontend-service",
+      "mode": "managed",
+      "type": "google_service_account",
+      "name": "sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "frontend-service-us-central-sa",
+            "create_ignore_already_exists": null,
+            "description": "",
+            "disabled": false,
+            "display_name": "Service account for frontend-service in us-central1",
+            "email": "frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "id": "projects/utilitarian-chemist-kvbmb/serviceAccounts/frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "member": "serviceAccount:frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "name": "projects/utilitarian-chemist-kvbmb/serviceAccounts/frontend-service-us-central-sa@utilitarian-chemist-kvbmb.iam.gserviceaccount.com",
+            "project": "utilitarian-chemist-kvbmb",
+            "timeouts": null,
+            "unique_id": "100833287562989607510"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "google_project_service.apphub_api_service"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_compute_backend_bucket",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_compute_backend_service",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "affinity_cookie_ttl_sec": 0,
+            "backend": [
+              {
+                "balancing_mode": "UTILIZATION",
+                "capacity_scaler": 1,
+                "custom_metrics": [],
+                "description": "",
+                "group": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/regions/us-central1/networkEndpointGroups/neg-app1-global-lb-backend-us-central1-f2f1",
+                "max_connections": 0,
+                "max_connections_per_endpoint": 0,
+                "max_connections_per_instance": 0,
+                "max_rate": 0,
+                "max_rate_per_endpoint": 0,
+                "max_rate_per_instance": 0,
+                "max_utilization": 0,
+                "preference": ""
+              }
+            ],
+            "cdn_policy": [],
+            "circuit_breakers": [],
+            "compression_mode": "DISABLED",
+            "connection_draining_timeout_sec": 300,
+            "consistent_hash": [],
+            "creation_timestamp": "2025-12-12T12:54:15.676-08:00",
+            "custom_metrics": [],
+            "custom_request_headers": [],
+            "custom_response_headers": [],
+            "description": "",
+            "dynamic_forwarding": [],
+            "edge_security_policy": "",
+            "enable_cdn": false,
+            "external_managed_migration_state": "",
+            "external_managed_migration_testing_percentage": 0,
+            "fingerprint": "xhAhOLY8hbw=",
+            "generated_id": 2490349159447608856,
+            "health_checks": [],
+            "iap": [],
+            "id": "projects/utilitarian-chemist-kvbmb/global/backendServices/app1-global-lb-backend",
+            "ip_address_selection_policy": "",
+            "load_balancing_scheme": "EXTERNAL_MANAGED",
+            "locality_lb_policies": [],
+            "locality_lb_policy": "",
+            "log_config": [
+              {
+                "enable": true,
+                "optional_fields": [],
+                "optional_mode": "EXCLUDE_ALL_OPTIONAL",
+                "sample_rate": 1
+              }
+            ],
+            "max_stream_duration": [],
+            "name": "app1-global-lb-backend",
+            "network_pass_through_lb_traffic_policy": [],
+            "outlier_detection": [],
+            "port_name": "http",
+            "project": "utilitarian-chemist-kvbmb",
+            "protocol": "HTTP",
+            "security_policy": "",
+            "security_settings": [],
+            "self_link": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/backendServices/app1-global-lb-backend",
+            "service_lb_policy": "",
+            "session_affinity": "NONE",
+            "strong_session_affinity_cookie": [],
+            "timeout_sec": 30,
+            "timeouts": null,
+            "tls_settings": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.google_cloud_run_v2_service.main",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version",
+            "module.app1-frontend-service.google_cloud_run_v2_service.main",
+            "module.app1-frontend-service.google_project_iam_member.roles",
+            "module.app1-frontend-service.google_service_account.sa",
+            "module.app1-global-lb-backend.google_compute_health_check.default",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.psc_negs",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.serverless_negs"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_compute_firewall",
+      "name": "allow_proxy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_compute_firewall",
+      "name": "default-hc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_compute_health_check",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_compute_region_network_endpoint_group",
+      "name": "psc_negs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_compute_region_network_endpoint_group",
+      "name": "serverless_negs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "index_key": "neg-app1-global-lb-backend-us-central1-f2f1",
+          "schema_version": 0,
+          "attributes": {
+            "app_engine": [],
+            "cloud_function": [],
+            "cloud_run": [
+              {
+                "service": "frontend-service",
+                "tag": "",
+                "url_mask": ""
+              }
+            ],
+            "description": "",
+            "id": "projects/utilitarian-chemist-kvbmb/regions/us-central1/networkEndpointGroups/neg-app1-global-lb-backend-us-central1-f2f1",
+            "name": "neg-app1-global-lb-backend-us-central1-f2f1",
+            "network": "",
+            "network_endpoint_type": "SERVERLESS",
+            "project": "utilitarian-chemist-kvbmb",
+            "psc_data": [],
+            "psc_target_service": "",
+            "region": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/regions/us-central1",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/regions/us-central1/networkEndpointGroups/neg-app1-global-lb-backend-us-central1-f2f1",
+            "serverless_deployment": [],
+            "subnetwork": "",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.google_cloud_run_v2_service.main",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version",
+            "module.app1-frontend-service.google_cloud_run_v2_service.main",
+            "module.app1-frontend-service.google_project_iam_member.roles",
+            "module.app1-frontend-service.google_service_account.sa"
+          ],
+          "create_before_destroy": true
+        }
+      ]
+    },
+    {
+      "module": "module.app1-global-lb-backend",
+      "mode": "managed",
+      "type": "google_iap_web_backend_service_iam_member",
+      "name": "member",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_address",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "address": "35.241.10.95",
+            "address_type": "EXTERNAL",
+            "creation_timestamp": "2025-12-12T11:20:13.124-08:00",
+            "description": "",
+            "effective_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "id": "projects/utilitarian-chemist-kvbmb/global/addresses/app1-global-lb-frontend-address",
+            "ip_version": "",
+            "label_fingerprint": "E4-YdoMZJrM=",
+            "labels": {},
+            "name": "app1-global-lb-frontend-address",
+            "network": "",
+            "prefix_length": 0,
+            "project": "utilitarian-chemist-kvbmb",
+            "purpose": "",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/addresses/app1-global-lb-frontend-address",
+            "terraform_labels": {
+              "goog-adc-tf-deployment": "export",
+              "goog-terraform-provisioned": "true"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_address",
+      "name": "default_ipv6",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "http",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "allow_psc_global_access": false,
+            "base_forwarding_rule": "",
+            "description": "",
+            "effective_labels": {
+              "goog-adc-tf-deployment": "export"
+            },
+            "external_managed_backend_bucket_migration_state": "",
+            "external_managed_backend_bucket_migration_testing_percentage": 0,
+            "forwarding_rule_id": 8550039266637463465,
+            "id": "projects/utilitarian-chemist-kvbmb/global/forwardingRules/app1-global-lb-frontend",
+            "ip_address": "35.241.10.95",
+            "ip_protocol": "TCP",
+            "ip_version": "",
+            "label_fingerprint": "GIShDgcYt7I=",
+            "labels": {},
+            "load_balancing_scheme": "EXTERNAL_MANAGED",
+            "metadata_filters": [],
+            "name": "app1-global-lb-frontend",
+            "network": "",
+            "network_tier": "PREMIUM",
+            "no_automate_dns_zone": null,
+            "port_range": "80-80",
+            "project": "utilitarian-chemist-kvbmb",
+            "psc_connection_id": "",
+            "psc_connection_status": "",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/forwardingRules/app1-global-lb-frontend",
+            "service_directory_registrations": [],
+            "source_ip_ranges": [],
+            "subnetwork": "",
+            "target": "https://www.googleapis.com/compute/beta/projects/utilitarian-chemist-kvbmb/global/targetHttpProxies/app1-global-lb-frontend-http-proxy",
+            "terraform_labels": {
+              "goog-adc-tf-deployment": "export"
+            },
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.google_cloud_run_v2_service.main",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version",
+            "module.app1-frontend-service.google_cloud_run_v2_service.main",
+            "module.app1-frontend-service.google_project_iam_member.roles",
+            "module.app1-frontend-service.google_service_account.sa",
+            "module.app1-global-lb-backend.google_compute_backend_bucket.default",
+            "module.app1-global-lb-backend.google_compute_backend_service.default",
+            "module.app1-global-lb-backend.google_compute_health_check.default",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.psc_negs",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.serverless_negs",
+            "module.app1-global-lb-frontend.google_compute_global_address.default",
+            "module.app1-global-lb-frontend.google_compute_target_http_proxy.default",
+            "module.app1-global-lb-frontend.google_compute_url_map.default",
+            "module.app1-global-lb-frontend.google_compute_url_map.https_redirect"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "http_ipv6",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "https",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "https_ipv6",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "internal_managed_http",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "internal_managed_http_ipv6",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "internal_managed_https",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_global_forwarding_rule",
+      "name": "internal_managed_https_ipv6",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_managed_ssl_certificate",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_ssl_certificate",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_target_http_proxy",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "creation_timestamp": "2025-12-12T12:55:21.755-08:00",
+            "description": "",
+            "fingerprint": "0xdgomRXPWY=",
+            "http_keep_alive_timeout_sec": 0,
+            "id": "projects/utilitarian-chemist-kvbmb/global/targetHttpProxies/app1-global-lb-frontend-http-proxy",
+            "name": "app1-global-lb-frontend-http-proxy",
+            "project": "utilitarian-chemist-kvbmb",
+            "proxy_bind": false,
+            "proxy_id": 2539458159107456982,
+            "self_link": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/targetHttpProxies/app1-global-lb-frontend-http-proxy",
+            "timeouts": null,
+            "url_map": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/urlMaps/app1-global-lb-frontend-url-map"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.google_cloud_run_v2_service.main",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version",
+            "module.app1-frontend-service.google_cloud_run_v2_service.main",
+            "module.app1-frontend-service.google_project_iam_member.roles",
+            "module.app1-frontend-service.google_service_account.sa",
+            "module.app1-global-lb-backend.google_compute_backend_bucket.default",
+            "module.app1-global-lb-backend.google_compute_backend_service.default",
+            "module.app1-global-lb-backend.google_compute_health_check.default",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.psc_negs",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.serverless_negs",
+            "module.app1-global-lb-frontend.google_compute_url_map.default",
+            "module.app1-global-lb-frontend.google_compute_url_map.https_redirect"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_target_https_proxy",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_url_map",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "creation_timestamp": "2025-12-12T12:55:09.922-08:00",
+            "default_custom_error_response_policy": [],
+            "default_route_action": [],
+            "default_service": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/backendServices/app1-global-lb-backend",
+            "default_url_redirect": [],
+            "description": "",
+            "fingerprint": "r9yworRMAKc=",
+            "header_action": [],
+            "host_rule": [
+              {
+                "description": "",
+                "hosts": [
+                  "*"
+                ],
+                "path_matcher": "default"
+              }
+            ],
+            "id": "projects/utilitarian-chemist-kvbmb/global/urlMaps/app1-global-lb-frontend-url-map",
+            "map_id": 7448203438784069571,
+            "name": "app1-global-lb-frontend-url-map",
+            "path_matcher": [
+              {
+                "default_custom_error_response_policy": [],
+                "default_route_action": [],
+                "default_service": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/backendServices/app1-global-lb-backend",
+                "default_url_redirect": [],
+                "description": "",
+                "header_action": [],
+                "name": "default",
+                "path_rule": [],
+                "route_rules": []
+              }
+            ],
+            "project": "utilitarian-chemist-kvbmb",
+            "self_link": "https://www.googleapis.com/compute/v1/projects/utilitarian-chemist-kvbmb/global/urlMaps/app1-global-lb-frontend-url-map",
+            "test": [],
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.apphub_api_service",
+            "google_project_service.secretmanager_api_service",
+            "google_project_service.sqladmin_api_service",
+            "module.app1-backend-service.google_cloud_run_v2_service.main",
+            "module.app1-backend-service.google_project_iam_member.roles",
+            "module.app1-backend-service.google_service_account.sa",
+            "module.app1-database-postgresql.data.google_kms_key_handle.key_handle",
+            "module.app1-database-postgresql.google_kms_key_handle.default",
+            "module.app1-database-postgresql.google_sql_database_instance.default",
+            "module.app1-database-postgresql.null_resource.module_depends_on",
+            "module.app1-database-postgresql.random_id.suffix",
+            "module.app1-database-postgresql.random_password.user-password",
+            "module.app1-database-secret.google_secret_manager_secret.secret",
+            "module.app1-database-secret.google_secret_manager_secret_version.version",
+            "module.app1-frontend-service.google_cloud_run_v2_service.main",
+            "module.app1-frontend-service.google_project_iam_member.roles",
+            "module.app1-frontend-service.google_service_account.sa",
+            "module.app1-global-lb-backend.google_compute_backend_bucket.default",
+            "module.app1-global-lb-backend.google_compute_backend_service.default",
+            "module.app1-global-lb-backend.google_compute_health_check.default",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.psc_negs",
+            "module.app1-global-lb-backend.google_compute_region_network_endpoint_group.serverless_negs"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "google_compute_url_map",
+      "name": "https_redirect",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.app1-global-lb-frontend",
+      "mode": "managed",
+      "type": "random_id",
+      "name": "certificate",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": []
+    },
+    {
+      "module": "module.apphub",
+      "mode": "data",
+      "type": "google_apphub_discovered_service",
+      "name": "services",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "backend-service-c9ffa719b819e3fe47e58f5a1720665f",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/utilitarian-chemist-kvbmb/locations/us-central1/discoveredServices/apphub-00000000-0000-0000-08e3-2aa510e4bce7",
+            "location": "us-central1",
+            "name": "projects/utilitarian-chemist-kvbmb/locations/us-central1/discoveredServices/apphub-00000000-0000-0000-08e3-2aa510e4bce7",
+            "project": "utilitarian-chemist-kvbmb",
+            "service_properties": [
+              {
+                "gcp_project": "projects/utilitarian-chemist-kvbmb",
+                "location": "us-central1",
+                "zone": ""
+              }
+            ],
+            "service_reference": [
+              {
+                "path": "",
+                "uri": "//run.googleapis.com/projects/1012287469672/locations/us-central1/services/backend-service"
+              }
+            ],
+            "service_uri": "//run.googleapis.com/projects/utilitarian-chemist-kvbmb/locations/us-central1/services/backend-service"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        },
+        {
+          "index_key": "frontend-service-c9ffa719b819e3fe47e58f5a1720665f",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/utilitarian-chemist-kvbmb/locations/us-central1/discoveredServices/apphub-00000000-0000-0000-1dd2-1b09f63815bc",
+            "location": "us-central1",
+            "name": "projects/utilitarian-chemist-kvbmb/locations/us-central1/discoveredServices/apphub-00000000-0000-0000-1dd2-1b09f63815bc",
+            "project": "utilitarian-chemist-kvbmb",
+            "service_properties": [
+              {
+                "gcp_project": "projects/utilitarian-chemist-kvbmb",
+                "location": "us-central1",
+                "zone": ""
+              }
+            ],
+            "service_reference": [
+              {
+                "path": "",
+                "uri": "//run.googleapis.com/projects/1012287469672/locations/us-central1/services/frontend-service"
+              }
+            ],
+            "service_uri": "//run.googleapis.com/projects/utilitarian-chemist-kvbmb/locations/us-central1/services/frontend-service"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        },
+        {
+          "index_key": "postgresql-db-30e07095e75e9dce875dbccc7d8bf085",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/utilitarian-chemist-kvbmb/locations/us-central1/discoveredServices/apphub-00000000-0000-0000-9a89-e68096b80982",
+            "location": "us-central1",
+            "name": "projects/utilitarian-chemist-kvbmb/locations/us-central1/discoveredServices/apphub-00000000-0000-0000-9a89-e68096b80982",
+            "project": "utilitarian-chemist-kvbmb",
+            "service_properties": [
+              {
+                "gcp_project": "projects/utilitarian-chemist-kvbmb",
+                "location": "",
+                "zone": ""
+              }
+            ],
+            "service_reference": [
+              {
+                "path": "",
+                "uri": "//sqladmin.googleapis.com/projects/1012287469672/instances/postgresql-db"
+              }
+            ],
+            "service_uri": "//sqladmin.googleapis.com/projects/utilitarian-chemist-kvbmb/instances/postgresql-db"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "module": "module.apphub",
+      "mode": "data",
+      "type": "google_apphub_discovered_workload",
+      "name": "workloads",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.apphub",
+      "mode": "managed",
+      "type": "google_apphub_application",
+      "name": "apphub_application",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.apphub",
+      "mode": "managed",
+      "type": "google_apphub_service_project_attachment",
+      "name": "attach_service_project",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "module": "module.apphub",
+      "mode": "managed",
+      "type": "google_apphub_workload",
+      "name": "register_workloads",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    }
+  ],
+  "check_results": [
+    {
+      "object_kind": "check",
+      "config_addr": "module.app1-global-lb-backend.check.backend_neg_type_exclusive",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-global-lb-backend.check.backend_neg_type_exclusive",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-global-lb-frontend.var.https_port",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-global-lb-frontend.var.https_port",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-frontend-service.var.ingress",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-frontend-service.var.ingress",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-database-postgresql.var.additional_users",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-database-postgresql.var.additional_users",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-backend-service.var.ingress",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-backend-service.var.ingress",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-backend-service.var.launch_stage",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-backend-service.var.launch_stage",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-frontend-service.var.execution_environment",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-frontend-service.var.execution_environment",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-global-lb-frontend.var.http_port",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-global-lb-frontend.var.http_port",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-database-postgresql.var.database_version",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-database-postgresql.var.database_version",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-backend-service.var.execution_environment",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-backend-service.var.execution_environment",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-global-lb-backend.var.serverless_neg_backends",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-global-lb-backend.var.serverless_neg_backends",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "object_kind": "var",
+      "config_addr": "module.app1-frontend-service.var.launch_stage",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.app1-frontend-service.var.launch_stage",
+          "status": "pass"
+        }
+      ]
+    }
+  ]
+}

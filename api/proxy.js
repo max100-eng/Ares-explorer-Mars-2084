@@ -1,3 +1,4 @@
+require('dotenv').config({ path: './.env.local' });
 const fetch = (...args) => import('node-fetch').then(({default: f}) => f(...args));
 
 module.exports = async (req, res) => {
