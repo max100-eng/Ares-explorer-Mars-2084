@@ -1,7 +1,7 @@
-const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GOOGLE_API_KEY;
 
 if (!apiKey) {
-    console.warn("VITE_GOOGLE_API_KEY no detectada. Asegúrate de configurarla en Vercel y tu .env.local");
+    console.warn("API KEY no detectada (VITE_GEMINI_API_KEY o VITE_GOOGLE_API_KEY).");
 }
 
 export const genAI = new GoogleGenerativeAI(apiKey || 'INVALID_KEY');
