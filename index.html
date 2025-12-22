@@ -27,45 +27,18 @@
 
     <title>Ares Explorer: Mars 2084</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Leaflet CSS for map -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-        <!-- Leaflet CSS for map visualization -->
-        <link 
-  rel="stylesheet" 
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
-  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
-  crossorigin=""
->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Rajdhani', 'sans-serif'],
-                        display: ['Orbitron', 'sans-serif'], // Corresponde a 'pantalla' en tu imagen
-                    },
-                    colors: {
-                        Mars: {
-                            100: '#fcdcc3',
-                            500: '#c1440e',
-                            900: '#4a1a05',
-                        },
-                        espace: {
-                            800: '#0b0d17',
-                            900: '#050608',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Leaflet CSS for map visualization -->
+    <link 
+      rel="stylesheet" 
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+      crossorigin=""
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
     <div id="root"></div>

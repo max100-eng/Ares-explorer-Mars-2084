@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css' // Referencia correcta al archivo CSS existente
+import './input.css' // Import Tailwind CSS
+import './index.css' // Import custom styles
 import { SpeedInsights } from "@vercel/speed-insights/react" 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

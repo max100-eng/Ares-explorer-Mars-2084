@@ -1,13 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    // Asegúrate de que esta línea esté correcta para tu estructura de proyecto
-    // Si tu código fuente está en 'src', debe apuntar a:
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}", 
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Rajdhani', 'sans-serif'],
+        display: ['Orbitron', 'sans-serif'],
+      },
+      colors: {
+        Mars: {
+          100: '#fcdcc3',
+          500: '#c1440e',
+          900: '#4a1a05',
+        },
+        espace: {
+          800: '#0b0d17',
+          900: '#050608',
+        }
+      }
+    },
   },
   plugins: [],
 }
