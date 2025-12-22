@@ -74,11 +74,11 @@ https://ares-explorer-mars-2084.vercel.app
 
 ## Problemas Comunes
 
-| Problema | Solución |
-|----------|----------|
-| Build falla | Verifica que `npm run build` funcione localmente |
-| Manifest no carga | Debe estar en `/public/manifest.json` (✅ ya está) |
-| Service Worker no registra | Vercel automáticamente provee HTTPS (requerido para SW) |
+| Problema                     | Solución                                                     |
+| ---------------------------- | ------------------------------------------------------------ |
+| Build falla                  | Verifica que `npm run build` funcione localmente             |
+| Manifest no carga            | Debe estar en `/public/manifest.json` (✅ ya está)           |
+| Service Worker no registra   | Vercel automáticamente provee HTTPS (requerido para SW)     |
 
 ## Notas Importantes
 
