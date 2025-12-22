@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import './index.css'; 
 
 function App() {
   const [input, setInput] = useState("");
