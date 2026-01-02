@@ -1,91 +1,89 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import './index.css'; 
+
+// 1. Configuración de la API Key usando variables de entorno de Vite
+// Esto leerá el valor que configuraste en Vercel como VITE_GEMINI_API_KEY
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
+const genAI = new GoogleGenerativeAI(API_KEY);
 
 function App() {
-  const [input, setInput] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Vercel inyecta la variable durante el despliegue
-  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-  const genAI = new GoogleGenerativeAI(API_KEY || "");
-
-  async function callGemini() {
-    if (!input) return;
-    
-    // Si no hay API_KEY, notificamos antes de intentar la conexión
+  const ejecutarPrompt = async () => {
+    if (!prompt.trim()) return;
     if (!API_KEY) {
-      setResponse("❌ SISTEMA OFFLINE: Falta VITE_GEMINI_API_KEY en Vercel.");
+      setError("Error: No se encontró la API Key. Configura VITE_GEMINI_API_KEY en Vercel.");
       return;
     }
 
     setLoading(true);
-    setResponse(""); // Limpiamos pantalla para nueva transmisión
+    setError(null);
     
     try {
-      const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash" 
-      });
+      // 2. Usamos el modelo más reciente para evitar errores 404
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
-      const systemPrompt = `Eres ARES, la IA de combate y exploración de la nave Ares Explorer. 
-      Tus respuestas son breves, militares y técnicas. Confirmación de mando: ${input}`;
+      console.log("Generando respuesta...");
       
-      const result = await model.generateContent(systemPrompt);
-      const text = result.response.text();
-      
+      // 3. Llamada al método generateContent
+      const result = await model.generateContent(prompt);
+      const data = await result.response;
+      const text = data.text();
+
       setResponse(text);
-      setInput(""); // Limpiamos el campo de entrada
-    } catch (error: any) {
-      console.error("Fallo de enlace:", error);
-      setResponse("❌ CRÍTICO: Error de autenticación o cuota excedida.");
+    } catch (err: any) {
+      console.error("Error detectado:", err.message);
+      setError(err.message.includes("404") 
+        ? "Error 404: El modelo no está disponible o la versión de la API es incorrecta." 
+        : "Error al conectar con Gemini: " + err.message);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="ares-container">
-      <header>
-        <div className={`status-led ${API_KEY ? 'led-on' : 'led-off'}`}></div>
-        <h1>ARES EXPLORER v3.2</h1>
-        <p>CONSOLA DE COMUNICACIÓN INTERPLANETARIA</p>
-      </header>
+    <div style={{ padding: '20px', fontFamily: 'sans-serif', maxWidth: '600px', margin: 'auto' }}>
+      <h1>Gemini AI Assistant</h1>
+      
+      <div style={{ marginBottom: '20px' }}>
+        <textarea
+          style={{ width: '100%', height: '100px', padding: '10px' }}
+          placeholder="Escribe tu pregunta aquí..."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+        />
+        <button 
+          onClick={ejecutarPrompt}
+          disabled={loading}
+          style={{
+            marginTop: '10px',
+            padding: '10px 20px',
+            backgroundColor: loading ? '#ccc' : '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer'
+          }}
+        >
+          {loading ? "Generando..." : "Enviar a Gemini"}
+        </button>
+      </div>
 
-      <main>
-        <div className="chat-window">
-          {loading ? (
-            <div className="scanning">ENCRIPTANDO SEÑAL...</div>
-          ) : (
-            <div className="response-box">
-              {response && <p className="ares-text">{response}</p>}
-            </div>
-          )}
+      {error && (
+        <div style={{ color: 'red', backgroundColor: '#fee', padding: '10px', borderRadius: '5px', marginBottom: '20px' }}>
+          <strong>Error:</strong> {error}
         </div>
+      )}
 
-        <div className="input-area">
-          <span className="prompt">{'>'}</span>
-          <input 
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && callGemini()}
-            placeholder="Ingrese comando de misión..."
-            disabled={loading}
-          />
-          <button onClick={callGemini} disabled={loading || !input}>
-            {loading ? "..." : "EJECUTAR"}
-          </button>
+      {response && (
+        <div style={{ backgroundColor: '#f4f4f4', padding: '20px', borderRadius: '5px', borderLeft: '5px solid #007bff' }}>
+          <h3>Respuesta de Gemini:</h3>
+          <p style={{ whiteSpace: 'pre-wrap' }}>{response}</p>
         </div>
-      </main>
-
-      <footer>
-        <div className="status-bar">
-          ESTADO: <span className={API_KEY ? "online-txt" : "offline-txt"}>
-            {API_KEY ? "SISTEMA ONLINE" : "SISTEMA OFFLINE"}
-          </span>
-        </div>
-        <div className="protocol-tag">NÚCLEO: GEMINI 1.5 FLASH</div>
-      </footer>
+      )}
     </div>
   );
 }
