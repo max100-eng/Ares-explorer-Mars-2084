@@ -1,62 +1,73 @@
-import { AnalysisResult } from '../types';
+import React, { useState } from 'react';
+import { generateContent } from '../api/geminiClient';
 
-interface Props {
-  result: AnalysisResult;
-}
+const AnalysisDisplay: React.FC = () => {
+  const [prompt, setPrompt] = useState('');
+  const [response, setResponse] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-export default function AnalysisDisplay({ result }: Props) {
-  const urgencyColors = {
-    BAJA: 'bg-green-500/20 text-green-400 border-green-500/50',
-    MEDIA: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/50',
-    ALTA: 'bg-orange-500/20 text-orange-400 border-orange-500/50',
-    CRÍTICA: 'bg-red-500/20 text-red-400 border-red-500/50',
+  const handleAnalyze = async () => {
+    if (!prompt.trim()) return;
+
+    setLoading(true);
+    setError(null);
+    setResponse('');
+
+    try {
+      // Llamamos al cliente que ahora usa el proxy /api/proxy
+      const data = await generateContent(prompt);
+      
+      // Extraemos el texto de la respuesta siguiendo la estructura de Google Gemini
+      const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No se recibió respuesta.';
+      
+      setResponse(aiText);
+    } catch (err: any) {
+      console.error('Error en el análisis:', err);
+      setError(err.message || 'Hubo un error al conectar con la IA');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="mt-8 space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className={`p-4 rounded-xl border-2 ${urgencyColors[result.urgency]}`}>
-        <div className="flex justify-between items-center">
-          <span className="text-sm font-bold uppercase tracking-wider">Nivel de Urgencia</span>
-          <span className="text-lg font-black">{result.urgency}</span>
+    <div className="p-4 max-w-2xl mx-auto bg-white rounded-xl shadow-md space-y-4">
+      <h2 className="text-xl font-bold text-gray-800">Análisis con Gemini 1.5 Flash</h2>
+      
+      <textarea
+        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+        rows={4}
+        placeholder="Escribe tu consulta médica o técnica aquí..."
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+      />
+
+      <button
+        onClick={handleAnalyze}
+        disabled={loading || !prompt.trim()}
+        className={`w-full py-2 px-4 rounded-lg font-semibold text-white transition-colors ${
+          loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+        }`}
+      >
+        {loading ? 'Analizando...' : 'Enviar a Gemini Pro'}
+      </button>
+
+      {error && (
+        <div className="p-3 bg-red-100 text-red-700 rounded-lg border border-red-200">
+          <strong>Error:</strong> {error}
         </div>
-      </div>
+      )}
 
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-xl">
-        <h3 className="text-blue-400 font-bold text-xl mb-2">Diagnóstico Preliminar</h3>
-        <p className="text-white text-lg leading-relaxed">{result.diagnosis}</p>
-        
-        <hr className="my-4 border-slate-700" />
-        
-        <h4 className="text-slate-400 font-bold mb-2">Detalles Técnicos</h4>
-        <p className="text-slate-300 text-sm leading-relaxed">{result.details}</p>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-          <h4 className="text-green-400 font-bold mb-3">Recomendaciones</h4>
-          <ul className="space-y-2">
-            {result.recommendations.map((rec, i) => (
-              <li key={i} className="flex items-start text-slate-300 text-sm">
-                <span className="mr-2">•</span> {rec}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {result.technicalMetrics && (
-          <div className="bg-slate-800 border border-slate-700 rounded-xl p-6">
-            <h4 className="text-purple-400 font-bold mb-3">Métricas Técnicas</h4>
-            <div className="space-y-2">
-              {Object.entries(result.technicalMetrics).map(([key, val]) => (
-                <div key={key} className="flex justify-between text-sm">
-                  <span className="text-slate-500 capitalize">{key}:</span>
-                  <span className="text-slate-300 font-mono">{val}</span>
-                </div>
-              ))}
-            </div>
+      {response && (
+        <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">Resultado:</h3>
+          <div className="text-gray-800 whitespace-pre-wrap leading-relaxed">
+            {response}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default AnalysisDisplay;
