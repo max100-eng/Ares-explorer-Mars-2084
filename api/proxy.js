@@ -1,87 +1,41 @@
-require('dotenv').config({ path: './.env.local' });
-const fetch = (...args) => import('node-fetch').then(({default: f}) => f(...args));
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 module.exports = async (req, res) => {
-  // Configuración de CORS
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-
-  // Manejar preflight (OPTIONS)
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+  if (!req.body?.prompt || typeof req.body.prompt !== "string") {
+    return res.status(400).json({ error: "El campo 'prompt' es obligatorio y debe ser texto" });
   }
 
-  const path = req.url || '';
-
-  // 1. Endpoint de verificación (Ping)
-  if (path.includes('/api/ping')) {
-    const hasKey = !!(process.env.API_KEY || process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY);
-    return res.status(200).json({ 
-      ok: true, 
-      message: "Proxy activo",
-      env_detected: hasKey 
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({
+      error: "API KEY no configurada",
+      mock: true,
+      data: "⚠️ Respuesta simulada: falta GEMINI_API_KEY"
     });
   }
 
-  // 2. Lógica del Proxy para Gemini
-  if (path.includes('/api/proxy') || path.includes('/api/gemini')) {
-    if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-    
-    const body = req.body;
-    const prompt = (body && body.prompt) || '';
-    
-    // Prioridad de llaves
-    const apiKey = process.env.API_KEY || 
-                   process.env.GEMINI_API_KEY || 
-                   process.env.VITE_GEMINI_API_KEY || 
-                   process.env.VITE_GOOGLE_API_KEY;
+  try {
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    // Modo MOCK si no hay llave
-    if (!apiKey) {
-      console.warn("⚠️ No se detectó API_KEY.");
-      return res.status(200).json({ 
-        ok: true, 
-        mock: true, 
-        data: {
-          candidates: [{
-            content: { parts: [{ text: "Modo Simulación: No se encontró la variable API_KEY en Vercel." }] }
-          }]
-        }
-      });
-    }
+    const result = await model.generateContent(req.body.prompt);
+    const text = result.response.text();
 
-    try {
-      // USAMOS v1beta y gemini-1.5-flash para evitar el error 404
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-      
-      const r = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          contents: [{ parts: [{ text: prompt }] }] 
-        })
-      });
+    return res.status(200).json({
+      mock: false,
+      data: text
+    });
 
-      if (!r.ok) {
-        const errorText = await r.text();
-        // Si el error es 404, Google nos dirá por qué en el JSON de respuesta
-        throw new Error(`Google API Error: ${r.status} - ${errorText}`);
-      }
+  } catch (error) {
+    console.error("Error en proxy.js:", error);
 
-      const data = await r.json();
-      return res.status(200).json({ ok: true, mock: false, data });
-
-    } catch (err) {
-      console.error('Proxy Error:', err);
-      return res.status(502).json({ error: 'Error en la conexión con la IA', details: err.message });
-    }
+    return res.status(500).json({
+      error: "Error interno en el servidor proxy",
+      details: error.message,
+      mock: true,
+      data: "⚠️ Respuesta simulada por error interno"
+    });
   }
-
-  res.status(404).json({ error: 'Ruta no encontrada' });
 };
+
+
