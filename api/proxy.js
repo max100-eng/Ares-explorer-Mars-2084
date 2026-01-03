@@ -2,7 +2,7 @@ require('dotenv').config({ path: './.env.local' });
 const fetch = (...args) => import('node-fetch').then(({default: f}) => f(...args));
 
 module.exports = async (req, res) => {
-  // Configuración de CORS para permitir la comunicación con el frontend
+  // Configuración de CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -36,29 +36,29 @@ module.exports = async (req, res) => {
     const body = req.body;
     const prompt = (body && body.prompt) || '';
     
-    // --- PRIORIDAD DE LLAVE: Buscamos primero 'API_KEY' vinculada en Vercel ---
+    // Prioridad de llaves
     const apiKey = process.env.API_KEY || 
                    process.env.GEMINI_API_KEY || 
                    process.env.VITE_GEMINI_API_KEY || 
                    process.env.VITE_GOOGLE_API_KEY;
 
-    // Si no hay llave, entramos en MODO MOCK
+    // Modo MOCK si no hay llave
     if (!apiKey) {
-      console.warn("⚠️ No se detectó API_KEY. Iniciando modo simulación.");
+      console.warn("⚠️ No se detectó API_KEY.");
       return res.status(200).json({ 
         ok: true, 
         mock: true, 
         data: {
           candidates: [{
-            content: { parts: [{ text: "Respuesta de simulación: No se encontró la variable API_KEY en Vercel para el proyecto Aress." }] }
+            content: { parts: [{ text: "Modo Simulación: No se encontró la variable API_KEY en Vercel." }] }
           }]
         }
       });
     }
 
     try {
-      // Llamada directa a Google Generative AI
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+      // USAMOS v1beta y gemini-1.5-flash para evitar el error 404
+      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
       
       const r = await fetch(apiUrl, {
         method: 'POST',
@@ -70,6 +70,7 @@ module.exports = async (req, res) => {
 
       if (!r.ok) {
         const errorText = await r.text();
+        // Si el error es 404, Google nos dirá por qué en el JSON de respuesta
         throw new Error(`Google API Error: ${r.status} - ${errorText}`);
       }
 
