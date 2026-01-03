@@ -35,3 +35,4 @@ export const generateContent = async (prompt) => {
     throw error;
   }
 };
+// Actualización forzada: v1.0.1
