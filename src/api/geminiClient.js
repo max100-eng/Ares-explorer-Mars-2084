@@ -1,11 +1,12 @@
 /**
  * geminiClient.js
- * Cliente que se comunica con nuestro servidor interno (proxy.js)
- * para proteger la API KEY de Google Gemini.
+ * Este cliente ahora se comunica con nuestro servidor (proxy.js)
+ * en lugar de llamar directamente a Google, protegiendo la API KEY.
  */
 
 export const generateContent = async (prompt) => {
   try {
+    // Llamamos a nuestra propia API interna en Vercel
     const response = await fetch('/api/proxy', {
       method: 'POST',
       headers: {
@@ -15,29 +16,25 @@ export const generateContent = async (prompt) => {
     });
 
     if (!response.ok) {
-      let errorData = {};
-      try {
-        errorData = await response.json();
-      } catch {
-        // Si la respuesta no es JSON, evitamos que explote
-      }
+      const errorData = await response.json();
       throw new Error(errorData.details || 'Error en la respuesta del servidor proxy');
     }
 
     const result = await response.json();
 
-    // Aviso si el proxy está en modo MOCK
+    // Verificamos si el proxy devolvió datos en modo MOCK o REAL
     if (result.mock) {
       console.warn("⚠️ Recibiendo respuesta en modo simulación (Mock)");
     }
 
-    // Retornamos los datos en el formato esperado por AnalysisDisplay o Chat
+    // Retornamos los datos en el formato que espera tu componente AnalysisDisplay o Chat
     return result.data;
 
   } catch (error) {
     console.error('Error en geminiClient:', error);
     throw error;
   }
-};
+}; // ← ✔️ cierre correcto
 
 // Actualización forzada: v1.0.1
+
